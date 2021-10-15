@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arizonia&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -22,18 +27,23 @@
           alt="few clouds"
         />
         <div class="row">
-          <div class="col-6">
-            <ul>
-              <li><strong>13</strong> °C | °F</li>
+          <div class="col-3">
+            <ul id="current-conditions">
+              <li id="current-temperature">
+                <strong>13</strong>
+                <span class="units">
+                  <a href="#">°C</a> | <a href="#">°F</a>
+                </span>
+              </li>
               <li>Humidity: 65%</li>
               <li>Wind: 3 km/h</li>
             </ul>
           </div>
-          <div class="col-6">few clouds</div>
+          <div class="col-9" id="current-description">few clouds</div>
         </div>
         <div class="row">
-          <div class="col-6">Friday, 15.10., 11:55</div>
-          <div class="col-6">Refresh</div>
+          <div class="col-3" id="current-date">Friday, 15.10., 11:55</div>
+          <div class="col-9" id="refresh">Refresh</div>
         </div>
       </div>
       This project was coded by Katharina Weberberger and is open-sourced on

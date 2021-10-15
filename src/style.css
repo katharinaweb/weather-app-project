@@ -2,6 +2,12 @@ body {
   background-color: #f6f6f6;
 }
 
+h1 {
+  text-align: center;
+  font-family: Arizonia;
+  font-size: 50pt;
+}
+
 ul {
   list-style: none;
   padding-left: 0;
@@ -16,6 +22,7 @@ img {
   max-width: 600px;
   margin: 0 auto;
   font-family: "Poppins", sans-serif;
+  font-size: 8pt;
 }
 
 .container {
@@ -25,4 +32,29 @@ img {
   margin-top: 10px;
   border: solid lightgrey;
   border-radius: 20px;
+}
+
+.units {
+  position: relative;
+  top: -12px;
+}
+
+#current-temperature strong {
+  font-size: 20pt;
+  line-height: 130%;
+}
+
+#current-description {
+  font-family: Arizonia;
+  font-size: 20pt;
+  text-align: center;
+}
+
+#current-date {
+  font-size: 10pt;
+}
+
+#refresh {
+  font-size: 10pt;
+  text-align: right;
 }
