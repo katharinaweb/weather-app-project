@@ -1,6 +1,5 @@
 // API integration
 function showWeather(response) {
-  console.log(response);
   let currentCity = response.data.name;
   let currentTemperature = response.data.main.temp;
   let currentHumidity = response.data.main.humidity;
