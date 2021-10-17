@@ -22,7 +22,7 @@
   <body>
     <div class="wrapper">
       <div class="container">
-        <h1>Vienna</h1>
+        <h1 id="city-element"></h1>
         <img
           src="https://openweathermap.org/img/wn/02d@2x.png"
           alt="few clouds"
@@ -31,16 +31,23 @@
           <div class="col-3">
             <ul id="current-conditions">
               <li id="current-temperature">
-                <strong>13</strong>
+                <strong> <span id="temperature-element"></span></strong>
                 <span class="units">
                   <a href="#">°C</a> | <a href="#">°F</a>
                 </span>
               </li>
-              <li>Humidity: 65%</li>
-              <li>Wind: 3 km/h</li>
+              <li>
+                Humidity:
+                <span id="humidity-element"></span>%
+              </li>
+              <li>
+                Wind:
+                <span id="wind-element"></span>
+                km/h
+              </li>
             </ul>
           </div>
-          <div class="col-9" id="current-description">few clouds</div>
+          <div class="col-9" id="description-element">few clouds</div>
         </div>
         <div class="row">
           <div class="col-3" id="current-date">Friday, 15.10., 11:55</div>
