@@ -39,6 +39,10 @@ img {
   top: -12px;
 }
 
+.forms-customised {
+  font-size: 8pt;
+}
+
 #current-temperature strong {
   font-size: 20pt;
   line-height: 130%;
