@@ -39,6 +39,17 @@ img {
   top: -12px;
 }
 
+.active {
+  color: #000;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.inactive:hover {
+  cursor: default;
+  color: #000;
+}
+
 .forms-customised {
   font-size: 8pt;
 }
