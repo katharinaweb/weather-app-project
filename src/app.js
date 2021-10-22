@@ -52,7 +52,7 @@ function showWeather(response) {
   let iconElement = document.querySelector("#icon-element");
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${currentIcon}@2x.png`
+    `https://openweathermap.org/img/wn/${currentIcon}@2x.png`
   );
   iconElement.setAttribute("alt", currentDescription);
   let temperatureElement = document.querySelector("#temperature-element");
