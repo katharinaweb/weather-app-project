@@ -32,6 +32,7 @@ function formatDate(timestamp) {
 
 function showWeather(response) {
   let currentCity = response.data.name;
+  let currentIcon = response.data.weather[0].icon;
   let currentTemperature = response.data.main.temp;
   let currentHumidity = response.data.main.humidity;
   let currentWind = response.data.wind.speed;
@@ -39,6 +40,12 @@ function showWeather(response) {
   let currentTimestamp = response.data.dt * 1000;
   let cityElement = document.querySelector("#city-element");
   cityElement.innerHTML = currentCity;
+  let iconElement = document.querySelector("#icon-element");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${currentIcon}@2x.png`
+  );
+  iconElement.setAttribute("alt", currentDescription);
   let temperatureElement = document.querySelector("#temperature-element");
   temperatureElement.innerHTML = Math.round(currentTemperature);
   let humidityElement = document.querySelector("#humidity-element");
