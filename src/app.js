@@ -58,9 +58,31 @@ function showWeather(response) {
   dateElement.innerHTML = formatDate(currentTimestamp);
 }
 
-let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
-let apiCity = "Vienna";
-let apiUnit = "metric";
-let apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${apiCity}&appid=${apiKey}&units=${apiUnit}`;
+function defaultLocation() {
+  axios
+    .get(
+      `http://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${apiKey}&units=${apiUnit}`
+    )
+    .then(showWeather);
+}
 
-axios.get(apiUrl).then(showWeather);
+function changeLocation(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#city-input");
+  if (cityInput.value !== "") {
+    axios
+      .get(
+        `http://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${apiUnit}`
+      )
+      .then(showWeather);
+  }
+}
+
+let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
+let apiUnit = "metric";
+let defaultCity = "Vienna";
+
+defaultLocation();
+
+let submitButton = document.querySelector("#submit-button");
+submitButton.addEventListener("click", changeLocation);
