@@ -78,6 +78,30 @@ function changeLocation(event) {
   }
 }
 
+function changeToFahrenheit(event) {
+  event.preventDefault;
+  let temperatures = document.querySelectorAll(".temperature");
+  for (let i = 0; i < temperatures.length; i++) {
+    temperatures[i].innerHTML = Math.round(
+      temperatures[i].innerHTML * (9 / 5) + 32
+    );
+    celsius.classList.remove("active");
+    fahrenheit.classList.add("active");
+  }
+}
+
+function changeToCelsius(event) {
+  event.preventDefault;
+  let temperatures = document.querySelectorAll(".temperature");
+  for (let i = 0; i < temperatures.length; i++) {
+    temperatures[i].innerHTML = Math.round(
+      (temperatures[i].innerHTML - 32) * (5 / 9)
+    );
+    fahrenheit.classList.remove("active");
+    celsius.classList.add("active");
+  }
+}
+
 let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
 let apiUnit = "metric";
 let defaultCity = "Vienna";
@@ -86,3 +110,9 @@ defaultLocation();
 
 let submitButton = document.querySelector("#submit-button");
 submitButton.addEventListener("click", changeLocation);
+
+let selectFahrenheit = document.querySelector("#fahrenheit");
+selectFahrenheit.addEventListener("click", changeToFahrenheit);
+
+let selectCelsius = document.querySelector("#celsius");
+selectCelsius.addEventListener("click", changeToCelsius);
