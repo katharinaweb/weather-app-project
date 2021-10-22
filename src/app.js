@@ -30,6 +30,15 @@ function formatDate(timestamp) {
   return `${weekdays[day]}, ${date}.${month}, ${hours}:${minutes}`;
 }
 
+function checkUnit() {
+  let currentUnit = document.getElementsByClassName("active").item(0).innerHTML;
+  if (currentUnit === "°C") {
+    unit = "metric";
+  } else if (currentUnit === "°F") {
+    unit = "imperial";
+  }
+}
+
 function showWeather(response) {
   let currentCity = response.data.name;
   let currentIcon = response.data.weather[0].icon;
@@ -59,20 +68,22 @@ function showWeather(response) {
 }
 
 function defaultLocation() {
+  checkUnit();
   axios
     .get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${apiKey}&units=${apiUnit}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${apiKey}&units=${unit}`
     )
     .then(showWeather);
 }
 
 function changeLocation(event) {
   event.preventDefault();
+  checkUnit();
   let cityInput = document.querySelector("#city-input");
   if (cityInput.value !== "") {
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${apiUnit}`
+        `http://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
       )
       .then(showWeather);
   }
@@ -103,7 +114,6 @@ function changeToCelsius(event) {
 }
 
 let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
-let apiUnit = "metric";
 let defaultCity = "Vienna";
 
 defaultLocation();
