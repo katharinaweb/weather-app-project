@@ -30,6 +30,42 @@ function formatDate(timestamp) {
   return `${weekdays[day]}, ${date}.${month}, ${hours}:${minutes}`;
 }
 
+/// Forecast
+
+let forecastHTML = ``;
+
+let forecastDays = ["Sat", "Sun", "Mon", "Tue", "Fri"];
+
+forecastDays.forEach(function (day) {
+  forecastHTML =
+    forecastHTML +
+    `
+  <div class="col-2">
+    <div id="forecast-day">${day}</div>
+    <div>
+      <img
+        id="forecast-image"
+        src="https://openweathermap.org/img/wn/02d@2x.png"
+        alt=""
+      />
+    </div>
+    <div>
+      <span id="forecast-min-temp">9°</span> /
+      <span id="forecast-max-temp">13°</span>
+    </div>
+  </div>`;
+});
+
+forecastHTML = `<div class="col-1"></div>` + forecastHTML;
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast-element");
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
+///
+
 function checkUnit() {
   let currentUnit = document.getElementsByClassName("active").item(0).innerHTML;
   if (currentUnit === "°C") {
