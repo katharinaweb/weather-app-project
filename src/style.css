@@ -54,6 +54,10 @@ img {
   font-size: 8pt;
 }
 
+.forecast {
+  text-align: center;
+}
+
 #current-temperature strong {
   font-size: 20pt;
   line-height: 130%;
@@ -69,7 +73,10 @@ img {
   font-size: 10pt;
 }
 
-#refresh {
-  font-size: 10pt;
-  text-align: right;
+#forecast-max-temp {
+  font-weight: bold;
+}
+
+#forecast-image {
+  width: 60px;
 }

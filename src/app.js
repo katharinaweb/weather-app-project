@@ -83,7 +83,8 @@ function changeLocation(event) {
   if (cityInput.value !== "") {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
+        `https
+        ://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
       )
       .then(showWeather);
   }
