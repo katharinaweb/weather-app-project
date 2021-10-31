@@ -64,6 +64,7 @@ function displayForecast() {
 }
 
 displayForecast();
+
 ///
 
 function checkUnit() {
@@ -106,9 +107,7 @@ function showWeather(response) {
 function defaultLocation() {
   checkUnit();
   axios
-    .get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${apiKey}&units=${unit}`
-    )
+    .get(`${apiRoot}${apiPath}?q=${defaultCity}&appid=${apiKey}&units=${unit}`)
     .then(showWeather);
 }
 
@@ -119,8 +118,7 @@ function changeLocation(event) {
   if (cityInput.value !== "") {
     axios
       .get(
-        `https
-        ://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
+        `${apiRoot}${apiPath}?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
       )
       .then(showWeather);
   }
@@ -150,6 +148,8 @@ function changeToCelsius(event) {
   }
 }
 
+let apiRoot = "https://api.openweathermap.org/";
+let apiPath = "data/2.5/weather";
 let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
 let defaultCity = "Vienna";
 
