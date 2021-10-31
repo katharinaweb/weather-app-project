@@ -30,40 +30,52 @@ function formatDate(timestamp) {
   return `${weekdays[day]}, ${date}.${month}, ${hours}:${minutes}`;
 }
 
-/// Forecast
+function formatDateShort(timestamp) {
+  let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let currentDate = new Date(timestamp);
+  let day = currentDate.getDay();
+  return `${weekdays[day]}`;
+}
 
-let forecastHTML = ``;
+// Forecast
 
-let forecastDays = ["Sat", "Sun", "Mon", "Tue", "Fri"];
-
-forecastDays.forEach(function (day) {
-  forecastHTML =
-    forecastHTML +
-    `
+function displayForecast(response) {
+  let forecastHTML = `<div class="col-1"></div>`;
+  let forecast = response.data.daily;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
   <div class="col-2">
-    <div id="forecast-day">${day}</div>
+    <div id="forecast-day">${formatDateShort(forecastDay.dt * 1000)}</div>
     <div>
       <img
         id="forecast-image"
-        src="https://openweathermap.org/img/wn/02d@2x.png"
+        src="https://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png"
         alt=""
       />
     </div>
     <div>
-      <span id="forecast-min-temp">9°</span> /
-      <span id="forecast-max-temp">13°</span>
+      <span id="forecast-min-temp">${Math.round(forecastDay.temp.min)}°</span> /
+      <span id="forecast-max-temp">${Math.round(forecastDay.temp.max)}°</span>
     </div>
   </div>`;
-});
-
-forecastHTML = `<div class="col-1"></div>` + forecastHTML;
-
-function displayForecast() {
+    }
+  });
   let forecastElement = document.querySelector("#forecast-element");
   forecastElement.innerHTML = forecastHTML;
 }
 
-displayForecast();
+function getForecast(coordinates) {
+  axios
+    .get(
+      `${apiRoot}${apiPathOnecall}?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=${unit}`
+    )
+    .then(displayForecast);
+}
 
 ///
 
@@ -102,12 +114,15 @@ function showWeather(response) {
   descriptionElement.innerHTML = currentDescription;
   let dateElement = document.querySelector("#date-element");
   dateElement.innerHTML = formatDate(currentTimestamp);
+  getForecast(response.data.coord);
 }
 
 function defaultLocation() {
   checkUnit();
   axios
-    .get(`${apiRoot}${apiPath}?q=${defaultCity}&appid=${apiKey}&units=${unit}`)
+    .get(
+      `${apiRoot}${apiPathWeather}?q=${defaultCity}&appid=${apiKey}&units=${unit}`
+    )
     .then(showWeather);
 }
 
@@ -118,7 +133,7 @@ function changeLocation(event) {
   if (cityInput.value !== "") {
     axios
       .get(
-        `${apiRoot}${apiPath}?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
+        `${apiRoot}${apiPathWeather}?q=${cityInput.value}&appid=${apiKey}&units=${unit}`
       )
       .then(showWeather);
   }
@@ -149,7 +164,8 @@ function changeToCelsius(event) {
 }
 
 let apiRoot = "https://api.openweathermap.org/";
-let apiPath = "data/2.5/weather";
+let apiPathWeather = "data/2.5/weather";
+let apiPathOnecall = "data/2.5/onecall";
 let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
 let defaultCity = "Vienna";
 
